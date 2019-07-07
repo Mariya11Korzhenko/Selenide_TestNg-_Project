@@ -33,6 +33,7 @@ public class ItemRunner {
         for (int i = 0; i < numberOfElements; i++) {
             itemsStartPage.addItem(textOfElement + i);
         }
+
         itemsStartPage.clickActiveButton();
         for (int i = 0; i < numberOfElements; i++) {
             elementsAreEqual = itemsStartPage.contains(i, textOfElement + i);
