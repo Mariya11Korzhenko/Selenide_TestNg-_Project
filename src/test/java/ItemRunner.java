@@ -18,7 +18,6 @@ public class ItemRunner {
 
         itemsStartPage = new ItemsStartPage();
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-//        System.setProperty("webdriver.firefox.marionette","src/test/resources/geckodriver.exe");
         System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver.exe");
 
         Configuration.browser = "firefox";
