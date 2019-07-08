@@ -19,7 +19,6 @@ public class ItemRunner {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         Configuration.browser = "chrome";
         Configuration.timeout = 15000;
-
         open("http://todomvc.com/examples/react/#/");
     }
 
@@ -158,29 +157,42 @@ public class ItemRunner {
         List<SelenideElement> editElements = itemsStartPage.getAllEditElementList();
         item1Text = allElements.get(0).getText();
         item2Text = allElements.get(1).getText();
-        int textSize= item1Text.length();
+        int textSize = item1Text.length();
         allElements.get(0).doubleClick();
         for (int i = 0; i < textSize; i++) {
             editElements.get(0).sendKeys(Keys.BACK_SPACE);
         }
         allElements = itemsStartPage.getAllItemsList();
         for (int i = 0; i < allElements.size(); i++) {
-            Assert.assertNotEquals(allElements.get(i).equals(item1Text),"The list still containsItem item1");
+            Assert.assertNotEquals(allElements.get(i).equals(item1Text), "The list still containsItem item1");
         }
-        for (int i = 0; i <2 ; i++) {
+        for (int i = 0; i < 2; i++) {
             itemsStartPage.addItem(item2Text);
         }
         allElements = itemsStartPage.getAllItemsList();
         int count = 0;
         for (int i = 0; i < allElements.size(); i++) {
 
-            if(allElements.get(0).getText().equals(item2Text)){
+            if (allElements.get(0).getText().equals(item2Text)) {
                 count++;
             }
         }
-        Assert.assertEquals(count,3);
-    }
+        Assert.assertEquals(count, 3);
 
+        int item2ExpectedAddedLength = 300 - allElements.get(1).getText().length();
+        String expectedAddingToItem2 = "";
+
+        while (expectedAddingToItem2.length() < item2ExpectedAddedLength) {
+            expectedAddingToItem2+="a @$%";
+        }
+        allElements.get(1).doubleClick();
+        editElements.get(1).sendKeys(expectedAddingToItem2);
+        editElements.get(1).sendKeys(Keys.ENTER);
+
+        allElements = itemsStartPage.getAllItemsList();
+        Assert.assertEquals(allElements.get(1).getText().length(),300);
+
+    }
 
 
     @AfterMethod()
