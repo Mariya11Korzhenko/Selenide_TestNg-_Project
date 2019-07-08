@@ -19,8 +19,8 @@ public class ItemRunner {
         itemsStartPage = new ItemsStartPage();
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver.exe");
-
-        Configuration.browser = "firefox";
+        Configuration.browser = "chrome";
+        Configuration.timeout = 10000;
         open("http://todomvc.com/examples/react/#/");
     }
 
@@ -45,10 +45,10 @@ public class ItemRunner {
 
     @BeforeGroups(groups = {"Test1", "Test2"})
     public void setUpForTests() {
-        Configuration.browser = "chrome";
-        Configuration.timeout = 15000;
-        open("http://todomvc.com/examples/react/#/");
         itemsStartPage = new ItemsStartPage();
+        Configuration.browser = "chrome";
+        Configuration.timeout = 10000;
+        open("http://todomvc.com/examples/react/#/");
         int numberOfElements = 3;
         String textOfElement = "Item";
         for (int i = 0; i < numberOfElements; i++) {
@@ -103,7 +103,7 @@ public class ItemRunner {
     public void setUpForTests100Items() {
         itemsStartPage = new ItemsStartPage();
         Configuration.browser = "chrome";
-        Configuration.timeout = 15000;
+        Configuration.timeout = 10000;
 
         open("http://todomvc.com/examples/react/#/");
         int numberOfElements = 100;
@@ -135,7 +135,7 @@ public class ItemRunner {
     public void setUpForTests3DifItems() {
         itemsStartPage = new ItemsStartPage();
         Configuration.browser = "chrome";
-        Configuration.timeout = 15000;
+        Configuration.timeout = 10000;
         open("http://todomvc.com/examples/react/#/");
         String item1 = "@#$%^";
         itemsStartPage.addItem(item1);
