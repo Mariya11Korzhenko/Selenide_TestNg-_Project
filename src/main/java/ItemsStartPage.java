@@ -38,7 +38,7 @@ public class ItemsStartPage {
         return listOfDisplayedElements;
     }
 
-    public boolean contains(int count, String expected) {
+    public boolean containsItem(int count, String expected) {
         String itemText = listOfDisplayedElements.get(count).getText();
         boolean elementsAreEqual = true;
         if (!itemText.equals(expected)) {
@@ -59,11 +59,11 @@ public class ItemsStartPage {
         allButton.click();
     }
 
-    public void clickclearCompletedButton() {
+    public void clickClearCompletedButton() {
         clearCompletedButton.click();
     }
 
-    public boolean checkclearCompletedButtonIsDisplayed() {
+    public boolean checkClearCompletedButtonIsDisplayed() {
         boolean isDisplayed = false;
         if (clearCompletedButton.isDisplayed()) {
             isDisplayed = true;
@@ -75,7 +75,7 @@ public class ItemsStartPage {
         completedButton.click();
     }
 
-    public void clickTheTogle(int togleNumber) {
+    public void clickTogle(int togleNumber) {
         listOfTogles.get(togleNumber).getWrappedElement().click();
     }
 

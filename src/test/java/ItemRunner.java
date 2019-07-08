@@ -36,7 +36,7 @@ public class ItemRunner {
 
         itemsStartPage.clickActiveButton();
         for (int i = 0; i < numberOfElements; i++) {
-            elementsAreEqual = itemsStartPage.contains(i, textOfElement + i);
+            elementsAreEqual = itemsStartPage.containsItem(i, textOfElement + i);
             Assert.assertTrue(elementsAreEqual, "Element " + i + " is not equal to expected");
         }
     }
@@ -61,18 +61,18 @@ public class ItemRunner {
         String textOfElement = "Item";
         boolean elementsAreEqual;
         for (int i = 0; i < 2; i++) {
-            itemsStartPage.clickTheTogle(i);
+            itemsStartPage.clickTogle(i);
         }
         itemsStartPage.clickCompletedButton();
         for (int i = 0; i < 2; i++) {
-            elementsAreEqual = itemsStartPage.contains(i, textOfElement + i);
+            elementsAreEqual = itemsStartPage.containsItem(i, textOfElement + i);
             Assert.assertTrue(elementsAreEqual, "Element " + i + " is not equal to expected");
         }
-        itemsStartPage.clickTheTogle(1);
+        itemsStartPage.clickTogle(1);
         itemsStartPage.clickActiveButton();
         for (int i = 0; i < 2; i++) {
             int expected = i + 1;
-            elementsAreEqual = itemsStartPage.contains(i, textOfElement + expected);
+            elementsAreEqual = itemsStartPage.containsItem(i, textOfElement + expected);
             Assert.assertTrue(elementsAreEqual, "Element " + i + " is not equal to expected");
 
         }
@@ -82,18 +82,18 @@ public class ItemRunner {
     public void scenario3() {
         List<String> allElements = itemsStartPage.getAllItemsTextList();
         boolean elementsAreEqual;
-        Assert.assertFalse(itemsStartPage.checkclearCompletedButtonIsDisplayed(), "Clear Completed Button is displayed");
+        Assert.assertFalse(itemsStartPage.checkClearCompletedButtonIsDisplayed(), "Clear Completed Button is displayed");
         itemsStartPage.clickTogleAll();
         for (int i = 0; i < allElements.size(); i++) {
             elementsAreEqual = itemsStartPage.getCompletedItems(i, allElements.get(i));
             Assert.assertTrue(elementsAreEqual, "Element " + i + " is not equal to expected");
         }
         Assert.assertEquals(itemsStartPage.getElementsLeft(), "0 items left");
-        Assert.assertTrue(itemsStartPage.checkclearCompletedButtonIsDisplayed(), "Clear Completed Button is not displayed");
+        Assert.assertTrue(itemsStartPage.checkClearCompletedButtonIsDisplayed(), "Clear Completed Button is not displayed");
         itemsStartPage.clickActiveButton();
         itemsStartPage.clickTogleAll();
         for (int i = 0; i < allElements.size(); i++) {
-            elementsAreEqual = itemsStartPage.contains(i, allElements.get(i));
+            elementsAreEqual = itemsStartPage.containsItem(i, allElements.get(i));
             Assert.assertTrue(elementsAreEqual, "Element " + i + " is not equal to expected");
         }
     }
@@ -118,13 +118,13 @@ public class ItemRunner {
         boolean elementsAreEqual;
         itemsStartPage.removeItem(30);
         for (int i = 0; i < 50; i++) {
-            itemsStartPage.clickTheTogle(i);
+            itemsStartPage.clickTogle(i);
         }
         itemsStartPage.clickActiveButton();
         String textOfElement = "Item";
         for (int i = 0; i < 20; i++) {
             int expected = i + 80;
-            elementsAreEqual = itemsStartPage.contains(i, textOfElement + expected);
+            elementsAreEqual = itemsStartPage.containsItem(i, textOfElement + expected);
             Assert.assertTrue(elementsAreEqual, "Element " + i + " is not equal to expected");
         }
         Assert.assertEquals(itemsStartPage.getElementsLeft(), "20 items left");
@@ -165,7 +165,7 @@ public class ItemRunner {
         }
         allElements = itemsStartPage.getAllItemsList();
         for (int i = 0; i < allElements.size(); i++) {
-            Assert.assertNotEquals(allElements.get(i).equals(item1Text),"The list still contains item1");
+            Assert.assertNotEquals(allElements.get(i).equals(item1Text),"The list still containsItem item1");
         }
         for (int i = 0; i <2 ; i++) {
             itemsStartPage.addItem(item2Text);
@@ -188,7 +188,7 @@ public class ItemRunner {
 
         itemsStartPage.clickAllButton();
         itemsStartPage.clickTogleAll();
-        itemsStartPage.clickclearCompletedButton();
+        itemsStartPage.clickClearCompletedButton();
         getWebDriver().manage().deleteAllCookies();
         getWebDriver().quit();
     }
