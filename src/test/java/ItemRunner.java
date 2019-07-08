@@ -6,7 +6,6 @@ import org.testng.annotations.*;
 
 import java.util.List;
 
-import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class ItemRunner {
@@ -15,13 +14,7 @@ public class ItemRunner {
 
     @BeforeClass
     public void setup() {
-
-        itemsStartPage = new ItemsStartPage();
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver.exe");
-        Configuration.browser = "chrome";
-        Configuration.timeout = 10000;
-        open("http://todomvc.com/examples/react/#/");
+        itemsStartPage = DriverSettings.setUpDriver();
     }
 
 
@@ -45,10 +38,7 @@ public class ItemRunner {
 
     @BeforeGroups(groups = {"Test1", "Test2"})
     public void setUpForTests() {
-        itemsStartPage = new ItemsStartPage();
-        Configuration.browser = "chrome";
-        Configuration.timeout = 10000;
-        open("http://todomvc.com/examples/react/#/");
+        itemsStartPage = DriverSettings.setUpDriver();
         int numberOfElements = 3;
         String textOfElement = "Item";
         for (int i = 0; i < numberOfElements; i++) {
@@ -101,11 +91,7 @@ public class ItemRunner {
 
     @BeforeGroups(groups = {"Test3"})
     public void setUpForTests100Items() {
-        itemsStartPage = new ItemsStartPage();
-        Configuration.browser = "chrome";
-        Configuration.timeout = 10000;
-
-        open("http://todomvc.com/examples/react/#/");
+        itemsStartPage = DriverSettings.setUpDriver();
         int numberOfElements = 100;
         String textOfElement = "Item";
         for (int i = 0; i < numberOfElements; i++) {
@@ -133,10 +119,7 @@ public class ItemRunner {
 
     @BeforeGroups(groups = {"Test4"})
     public void setUpForTests3DifItems() {
-        itemsStartPage = new ItemsStartPage();
-        Configuration.browser = "chrome";
-        Configuration.timeout = 10000;
-        open("http://todomvc.com/examples/react/#/");
+        itemsStartPage = DriverSettings.setUpDriver();
         String item1 = "@#$%^";
         itemsStartPage.addItem(item1);
         String item2 = "";
@@ -199,7 +182,6 @@ public class ItemRunner {
 
     @AfterMethod()
     public void cleanUp() {
-
         itemsStartPage.clickAllButton();
         itemsStartPage.clickTogleAll();
         itemsStartPage.clickClearCompletedButton();
