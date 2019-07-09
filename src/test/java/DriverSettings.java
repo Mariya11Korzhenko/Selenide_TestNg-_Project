@@ -4,7 +4,7 @@ import static com.codeborne.selenide.Selenide.open;
 
  class DriverSettings {
 
-    protected static ItemsStartPage setUpDriver(){
+    static ItemsStartPage setUpDriver(){
 
 
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
