@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.open;
 
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver.exe");
-        Configuration.browser = "chrome";
+        Configuration.browser = "firefox";
         Configuration.timeout = 10000;
 
 

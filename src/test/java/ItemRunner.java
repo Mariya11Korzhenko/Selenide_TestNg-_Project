@@ -1,4 +1,3 @@
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
@@ -11,12 +10,10 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class ItemRunner {
     private ItemsStartPage itemsStartPage;
 
-
     @BeforeClass
     public void setup() {
         itemsStartPage = DriverSettings.setUpDriver();
     }
-
 
     @Test()
     public void scenario1() {

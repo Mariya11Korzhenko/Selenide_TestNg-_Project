@@ -1,4 +1,5 @@
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -25,19 +26,19 @@ public class ItemsStartPage {
     private SelenideElement toggleAll = $(By.xpath(" .//label[@for='toggle-all']"));
     private List<SelenideElement> editElements = $$(By.xpath(".//input[@class='edit']"));
 
-
+    @Step
     public void addItem(String itemName) {
         newToDo.setValue(itemName).pressEnter();
     }
-
+    @Step
     public List<SelenideElement> getAllEditElementList(){
         return editElements;
     }
-
+    @Step
     public List<SelenideElement> getAllItemsList(){
         return listOfDisplayedElements;
     }
-
+    @Step
     public boolean containsItem(int count, String expected) {
         String itemText = listOfDisplayedElements.get(count).getText();
         boolean elementsAreEqual = true;
@@ -46,23 +47,23 @@ public class ItemsStartPage {
         }
         return elementsAreEqual;
     }
-
+    @Step
     public void clickActiveButton() {
         activeButton.click();
     }
-
+    @Step
     public void clickTogleAll() {
         toggleAll.click();
     }
-
+    @Step
     public void clickAllButton() {
         allButton.click();
     }
-
+    @Step
     public void clickClearCompletedButton() {
         clearCompletedButton.click();
     }
-
+    @Step
     public boolean checkClearCompletedButtonIsDisplayed() {
         boolean isDisplayed = false;
         if (clearCompletedButton.isDisplayed()) {
@@ -70,19 +71,19 @@ public class ItemsStartPage {
         }
         return isDisplayed;
     }
-
+    @Step
     public void clickCompletedButton() {
         completedButton.click();
     }
-
+    @Step
     public void clickTogle(int togleNumber) {
         listOfTogles.get(togleNumber).getWrappedElement().click();
     }
-
+    @Step
     public String getElementsLeft() {
         return elementsLeftLabel.getText();
     }
-
+    @Step
     public boolean getCompletedItems(int count, String expected) {
         String completedItemText = completedItemsLabelList.get(count).getText();
         boolean elementsAreEqual = true;
@@ -91,15 +92,15 @@ public class ItemsStartPage {
         }
         return elementsAreEqual;
     }
-
+    @Step
     public List<String> getAllItemsTextList() {
-        List<String> itemsTextList = new ArrayList<>();
+        List<String> itemsTextList = new ArrayList<String>();
         for (int i = 0; i < listOfDisplayedElements.size(); i++) {
             itemsTextList.add(listOfDisplayedElements.get(i).getText());
         }
         return itemsTextList;
     }
-
+    @Step
     public void removeItem(int count) {
         WebDriver driver = getWebDriver();
         for (int i = 0; i < count; i++) {
