@@ -39,7 +39,11 @@ allure {
 
 
     test{
-        useTestNG()
+        useTestNG(){
+            //parallel testing using parallel_texting.xml
+            suites 'src/test/resources/parallel_texting.xml'
+        }
+
         systemProperty "browser", findProperty("browser")
     }
 
